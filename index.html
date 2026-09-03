@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -574,16 +573,19 @@
             align-items: center;
             justify-content: center;
             background: var(--pink-soft);
+            position: relative;
         }
 
         .equipo-member .avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center top;
         }
 
-        .equipo-member .avatar-placeholder {
+        .equipo-member .avatar .avatar-placeholder {
             font-size: 3.5rem;
+            position: absolute;
         }
 
         .equipo-member .info { padding: 1.2rem; }
@@ -1789,12 +1791,12 @@
                 <li><button data-tab="mision">🎯 Misión y Visión</button></li>
                 <li><button data-tab="activaciones">📸 Activaciones</button></li>
                 <li><button data-tab="talleres">🎨 Talleres</button></li>
-                <li><button data-tab="tienda">🛍️ Tienda</button></li>
-                <li><button data-tab="contacto">📬 Contacto</button></li>
+                <li><button data-tab="tienda">️ Tienda</button></li>
+                <li><button data-tab="contacto"> Contacto</button></li>
             </ul>
             <div style="display:flex;align-items:center;gap:0.5rem;">
                 <button class="nav-cart-btn" id="cartBtn" onclick="openCart()" title="Ver carrito">
-                    🛒
+                    
                     <span class="cart-count hidden" id="cartCount">0</span>
                 </button>
                 <div class="nav-toggle" id="navToggle">
@@ -1866,7 +1868,7 @@
                     <p>Primer cortometraje de stop motion en México que aborda el tema de la menarca.</p>
                 </div>
                 <div class="dato-card">
-                    <div class="dato-icon">👩‍👧</div>
+                    <div class="dato-icon">‍👧</div>
                     <h4>Equipo 90% Femenino</h4>
                     <p>El equipo creativo y técnico está conformado en un 90% por mujeres: directoras, animadoras, diseñadoras, compositoras y productoras.</p>
                 </div>
@@ -1880,117 +1882,165 @@
             </div>
 
             <div class="equipo-photo">
-                <img src="assets/images/proyecto/equipo-grupal.jpg" alt="Equipo Menarca Digna" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22700%22><rect width=%221200%22 height=%22700%22 fill=%22%23FDE8F0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%22100%22>👩‍👩‍</text><text x=%2250%25%22 y=%2262%25%22 text-anchor=%22middle%22 font-size=%2240%22 fill=%22%23E8739A%22 font-family=%22sans-serif%22>Equipo Menarca Digna</text></svg>'">
+                <img src="assets/images/proyecto/equipo-grupal.jpg" alt="Equipo Menarca Digna" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22700%22><rect width=%221200%22 height=%22700%22 fill=%22%23FDE8F0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%22100%22>👩👩‍</text><text x=%2250%25%22 y=%2262%25%22 text-anchor=%22middle%22 font-size=%2240%22 fill=%22%23E8739A%22 font-family=%22sans-serif%22>Equipo Menarca Digna</text></svg>'">
             </div>
 
             <div class="equipo-grid">
                 <div class="equipo-member">
-                    <div class="avatar"><span class="avatar-placeholder">🎬</span></div>
+                    <div class="avatar">
+                        <img src="assets/images/equipo/fatima-ramirez.jpg" alt="Fátima Ramírez Corona" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="avatar-placeholder" style="display:none;">🎬</span>
+                    </div>
                     <div class="info">
                         <h4>Fátima Ramírez Corona</h4>
                         <div class="role">Directora y Guionista</div>
                     </div>
                 </div>
                 <div class="equipo-member">
-                    <div class="avatar"><span class="avatar-placeholder">📋</span></div>
+                    <div class="avatar">
+                        <img src="assets/images/equipo/alicia-hernandez.jpg" alt="Alicia Hernández" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="avatar-placeholder" style="display:none;"></span>
+                    </div>
                     <div class="info">
                         <h4>Alicia Hernández</h4>
                         <div class="role">Productora</div>
                     </div>
                 </div>
                 <div class="equipo-member">
-                    <div class="avatar"><span class="avatar-placeholder">🎨</span></div>
+                    <div class="avatar">
+                        <img src="assets/images/equipo/maureen-narro.jpg" alt="Maureen Narro" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="avatar-placeholder" style="display:none;">🎨</span>
+                    </div>
                     <div class="info">
                         <h4>Maureen Narro</h4>
                         <div class="role">Diseño de Producción</div>
                     </div>
                 </div>
                 <div class="equipo-member">
-                    <div class="avatar"><span class="avatar-placeholder">🎥</span></div>
+                    <div class="avatar">
+                        <img src="assets/images/equipo/elizabeth-cisneros.jpg" alt="Elizabeth Cisneros" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="avatar-placeholder" style="display:none;">🎥</span>
+                    </div>
                     <div class="info">
                         <h4>Elizabeth Cisneros</h4>
                         <div class="role">Directora de Fotografía</div>
                     </div>
                 </div>
                 <div class="equipo-member">
-                    <div class="avatar"><span class="avatar-placeholder">🎭</span></div>
+                    <div class="avatar">
+                        <img src="assets/images/equipo/mayreni-senior.jpg" alt="Mayrení Senior" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="avatar-placeholder" style="display:none;">🎭</span>
+                    </div>
                     <div class="info">
                         <h4>Mayrení Senior</h4>
                         <div class="role">Directora de Animación</div>
                     </div>
                 </div>
                 <div class="equipo-member">
-                    <div class="avatar"><span class="avatar-placeholder">🎵</span></div>
+                    <div class="avatar">
+                        <img src="assets/images/equipo/angeles-soria.jpg" alt="Ángeles Soria" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="avatar-placeholder" style="display:none;">🎵</span>
+                    </div>
                     <div class="info">
                         <h4>Ángeles Soria</h4>
                         <div class="role">Compositora</div>
                     </div>
                 </div>
                 <div class="equipo-member">
-                    <div class="avatar"><span class="avatar-placeholder">🔊</span></div>
+                    <div class="avatar">
+                        <img src="assets/images/equipo/cristina-aguilar.jpg" alt="Cristina Aguilar" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="avatar-placeholder" style="display:none;">🔊</span>
+                    </div>
                     <div class="info">
                         <h4>Cristina Aguilar</h4>
                         <div class="role">Diseño Sonoro</div>
                     </div>
                 </div>
                 <div class="equipo-member">
-                    <div class="avatar"><span class="avatar-placeholder">✂️</span></div>
+                    <div class="avatar">
+                        <img src="assets/images/equipo/alondra-garcia.jpg" alt="Alondra García" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="avatar-placeholder" style="display:none;">✂️</span>
+                    </div>
                     <div class="info">
                         <h4>Alondra García</h4>
                         <div class="role">Vestuario</div>
                     </div>
                 </div>
                 <div class="equipo-member">
-                    <div class="avatar"><span class="avatar-placeholder">🏗️</span></div>
+                    <div class="avatar">
+                        <img src="assets/images/equipo/cecilia-andalon.jpg" alt="Cecilia Andalón" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="avatar-placeholder" style="display:none;">🏗️</span>
+                    </div>
                     <div class="info">
                         <h4>Cecilia Andalón</h4>
                         <div class="role">Construcción de Escenarios</div>
                     </div>
                 </div>
                 <div class="equipo-member">
-                    <div class="avatar"><span class="avatar-placeholder">🎭</span></div>
+                    <div class="avatar">
+                        <img src="assets/images/equipo/dolores-estrada.jpg" alt="Dolores Estrada" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="avatar-placeholder" style="display:none;">🎭</span>
+                    </div>
                     <div class="info">
                         <h4>Dolores Estrada</h4>
                         <div class="role">Lead Puppet Maker</div>
                     </div>
                 </div>
                 <div class="equipo-member">
-                    <div class="avatar"><span class="avatar-placeholder">🎭</span></div>
+                    <div class="avatar">
+                        <img src="assets/images/equipo/milldret-garcia.jpg" alt="Milldret García" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="avatar-placeholder" style="display:none;">🎭</span>
+                    </div>
                     <div class="info">
                         <h4>Milldret García</h4>
                         <div class="role">Puppet Maker</div>
                     </div>
                 </div>
                 <div class="equipo-member">
-                    <div class="avatar"><span class="avatar-placeholder">🎭</span></div>
+                    <div class="avatar">
+                        <img src="assets/images/equipo/luz-garcia.jpg" alt="Luz García" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="avatar-placeholder" style="display:none;">🎭</span>
+                    </div>
                     <div class="info">
                         <h4>Luz García</h4>
                         <div class="role">Puppet Maker</div>
                     </div>
                 </div>
                 <div class="equipo-member">
-                    <div class="avatar"><span class="avatar-placeholder">🎨</span></div>
+                    <div class="avatar">
+                        <img src="assets/images/equipo/elisa-helguera.jpg" alt="Elisa Helguera" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="avatar-placeholder" style="display:none;">🎨</span>
+                    </div>
                     <div class="info">
                         <h4>Elisa Helguera</h4>
                         <div class="role">Prop Master</div>
                     </div>
                 </div>
                 <div class="equipo-member">
-                    <div class="avatar"><span class="avatar-placeholder">🎞️</span></div>
+                    <div class="avatar">
+                        <img src="assets/images/equipo/lorena-sosa.jpg" alt="Lorena Sosa" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="avatar-placeholder" style="display:none;">🎞️</span>
+                    </div>
                     <div class="info">
                         <h4>Lorena Sosa</h4>
                         <div class="role">Supervisora de Postproducción</div>
                     </div>
                 </div>
                 <div class="equipo-member">
-                    <div class="avatar"><span class="avatar-placeholder">🎙️</span></div>
+                    <div class="avatar">
+                        <img src="assets/images/equipo/abril-iniguez.jpg" alt="Abril Íñiguez" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="avatar-placeholder" style="display:none;">🎙️</span>
+                    </div>
                     <div class="info">
                         <h4>Abril Íñiguez</h4>
                         <div class="role">Actriz de Voz</div>
                     </div>
                 </div>
                 <div class="equipo-member">
-                    <div class="avatar"><span class="avatar-placeholder">🎨</span></div>
+                    <div class="avatar">
+                        <img src="assets/images/equipo/megan-mendoza.jpg" alt="Megan Mendoza" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="avatar-placeholder" style="display:none;">🎨</span>
+                    </div>
                     <div class="info">
                         <h4>Megan Mendoza</h4>
                         <div class="role">Animadora</div>
@@ -2009,12 +2059,12 @@
 
         <div class="mv-cards">
             <div class="mv-card mision">
-                <div class="icon"></div>
+                <div class="icon">🎯</div>
                 <h3>Misión</h3>
-                <p>Crear contenido audiovisual animado que acompañe y dignifique la experiencia de la menstruación en niñas y adolescentes, rompiendo tabúes y generando conversaciones sanas entre familias, escuelas y comunidades. Utilizamos el stop motion y el cut out como herramientas artísticas para transformar realidades.</p>
+                <p>Crear contenido audiovisual animado que eduque, acompañe y dignifique la experiencia de la menstruación en niñas y adolescentes, rompiendo tabúes y generando conversaciones sanas entre familias, escuelas y comunidades. Utilizamos el stop motion y el cut out como herramientas artísticas para transformar realidades.</p>
             </div>
             <div class="mv-card vision">
-                <div class="icon"></div>
+                <div class="icon">🌟</div>
                 <h3>Visión</h3>
                 <p>Ser un referente latinoamericano en la creación de contenido animado sobre salud menstrual, transformando la manera en que las nuevas generaciones perciben y viven su cuerpo, con dignidad, información y curiosidad. Imaginamos un mundo donde la menstruación se nombre con la misma naturalidad que la lluvia.</p>
             </div>
@@ -2028,8 +2078,8 @@
 
             <div class="colab-grid">
                 <div class="colab-card">
-                    <div class="logo-circle">🎓</div>
-                    <h4>Taller del Chucho (especialización en Stop Motion)</h4>
+                    <div class="logo-circle"></div>
+                    <h4>Taller de Especialización Stop Motion</h4>
                     <p>Inicia proceso de investigación, documentación, guión y desarrollo de arte (2024).</p>
                     <span class="colab-tag tag-edu">Educación</span>
                 </div>
@@ -2040,7 +2090,7 @@
                     <span class="colab-tag tag-prod">Producción</span>
                 </div>
                 <div class="colab-card">
-                    <div class="logo-circle"></div>
+                    <div class="logo-circle">🏆</div>
                     <h4>Beca Grodman</h4>
                     <p>Beneficiarias de la Beca Grodman 2025 para el desarrollo y producción de puppets.</p>
                     <span class="colab-tag tag-prod">Producción</span>
@@ -2087,7 +2137,7 @@
             <div class="activacion-galeria reverse">
                 <div class="gal-side">
                     <div class="gal-side-item">
-                        <img src="assets/images/activaciones/activacion-02-cdmx-01.jpg" alt="Activación CDMX 8M - Detalle" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22250%22><rect width=%22400%22 height=%22250%22 fill=%22%23FDE8D0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%2250%22>🌺</text><text x=%2250%25%22 y=%2270%25%22 text-anchor=%22middle%22 font-size=%2218%22 fill=%22%23F09070%22 font-family=%22sans-serif%22>CDMX · 8M</text></svg>'">
+                        <img src="assets/images/activaciones/activacion-02-cdmx-01.jpg" alt="Activación CDMX 8M - Detalle" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22250%22><rect width=%22400%22 height=%22250%22 fill=%22%23FDE8D0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%2250%22></text><text x=%2250%25%22 y=%2270%25%22 text-anchor=%22middle%22 font-size=%2218%22 fill=%22%23F09070%22 font-family=%22sans-serif%22>CDMX · 8M</text></svg>'">
                     </div>
                     <div class="gal-side-item">
                         <img src="assets/images/activaciones/activacion-02-cdmx-02.jpg" alt="Activación CDMX 8M - Participantes" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22250%22><rect width=%22400%22 height=%22250%22 fill=%22%23E0F5E8%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%2250%22>✊</text><text x=%2250%25%22 y=%2270%25%22 text-anchor=%22middle%22 font-size=%2218%22 fill=%22%234CAF50%22 font-family=%22sans-serif%22>Marcha 8M</text></svg>'">
@@ -2108,7 +2158,7 @@
         </div>
 
         <div class="talleres-pronto">
-            <div class="pronto-icon">🎨</div>
+            <div class="pronto-icon"></div>
             <h2>PRÓXIMAMENTE</h2>
             <p>Estamos preparando talleres increíbles para ti. ¡Muy pronto tendrás más información!</p>
         </div>
@@ -2119,13 +2169,13 @@
         <div class="tienda-hero">
             <span class="section-label" style="display:inline-block;background:var(--pink-soft);color:var(--pink);padding:0.4rem 1.2rem;border-radius:20px;font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:1rem;">Tienda Oficial</span>
             <h1>Stickers <span>Menarca Digna</span></h1>
-            <p>Colección de 6 stickers ¡Llévalos contigo y apoya el proyecto</p>
+            <p>Colección de 6 stickers diseñados con amor para normalizar la menstruación. ¡Llévalos contigo y comparte el mensaje!</p>
         </div>
 
         <div class="stickers-grid">
             <div class="sticker-card">
                 <div class="sticker-image">
-                    <img src="assets/images/tienda/sticker-01-sangre-poder.png" alt="Sticker Surfista" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22560%22 height=%22560%22><rect width=%22560%22 height=%22560%22 fill=%22%23FDE8F0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%22100%22>🏄‍♀️</text><text x=%2250%25%22 y=%2265%25%22 text-anchor=%22middle%22 font-size=%2232%22 fill=%22%23E8739A%22 font-family=%22sans-serif%22>Surfista</text></svg>'">
+                    <img src="assets/images/tienda/surfista.jpg" alt="Sticker Surfista" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22560%22 height=%22560%22><rect width=%22560%22 height=%22560%22 fill=%22%23FDE8F0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%22100%22>🏄‍♀️</text><text x=%2250%25%22 y=%2265%25%22 text-anchor=%22middle%22 font-size=%2232%22 fill=%22%23E8739A%22 font-family=%22sans-serif%22>Surfista</text></svg>'">
                 </div>
                 <div class="sticker-info">
                     <h4>Surfista</h4>
@@ -2139,7 +2189,7 @@
 
             <div class="sticker-card">
                 <div class="sticker-image">
-                    <img src="assets/images/tienda/sticker-02-normal-natural.png" alt="Sticker Florecer sin Vergüenza" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22560%22 height=%22560%22><rect width=%22560%22 height=%22560%22 fill=%22%23EDE4F3%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%22100%22>🌹</text><text x=%2250%25%22 y=%2265%25%22 text-anchor=%22middle%22 font-size=%2232%22 fill=%22%239B7CB6%22 font-family=%22sans-serif%22>Florecer sin Vergüenza</text></svg>'">
+                    <img src="assets/images/tienda/florecer.jpg" alt="Sticker Florecer sin Vergüenza" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22560%22 height=%22560%22><rect width=%22560%22 height=%22560%22 fill=%22%23EDE4F3%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%22100%22>🌹</text><text x=%2250%25%22 y=%2265%25%22 text-anchor=%22middle%22 font-size=%2232%22 fill=%22%239B7CB6%22 font-family=%22sans-serif%22>Florecer sin Vergüenza</text></svg>'">
                 </div>
                 <div class="sticker-info">
                     <h4>Florecer sin Vergüenza</h4>
@@ -2153,7 +2203,7 @@
 
             <div class="sticker-card">
                 <div class="sticker-image">
-                    <img src="assets/images/tienda/sticker-03-valiente-libre.png" alt="Sticker Soy Cíclica" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22560%22 height=%22560%22><rect width=%22560%22 height=%22560%22 fill=%22%23E0F0FA%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%22100%22>🔄</text><text x=%2250%25%22 y=%2265%25%22 text-anchor=%22middle%22 font-size=%2232%22 fill=%22%236BA3D6%22 font-family=%22sans-serif%22>Soy Cíclica</text></svg>'">
+                    <img src="assets/images/tienda/ciclica.jpg" alt="Sticker Soy Cíclica" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22560%22 height=%22560%22><rect width=%22560%22 height=%22560%22 fill=%22%23E0F0FA%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%22100%22>🔄</text><text x=%2250%25%22 y=%2265%25%22 text-anchor=%22middle%22 font-size=%2232%22 fill=%22%236BA3D6%22 font-family=%22sans-serif%22>Soy Cíclica</text></svg>'">
                 </div>
                 <div class="sticker-info">
                     <h4>Soy Cíclica</h4>
@@ -2167,7 +2217,7 @@
 
             <div class="sticker-card">
                 <div class="sticker-image">
-                    <img src="assets/images/tienda/sticker-04-ciclo-poder.png" alt="Sticker Toalla" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22560%22 height=%22560%22><rect width=%22560%22 height=%22560%22 fill=%22%23FDE8D0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%22100%22>❤️</text><text x=%2250%25%22 y=%2265%25%22 text-anchor=%22middle%22 font-size=%2232%22 fill=%22%23F09070%22 font-family=%22sans-serif%22>Toalla</text></svg>'">
+                    <img src="assets/images/tienda/toalla.jpg" alt="Sticker Toalla" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22560%22 height=%22560%22><rect width=%22560%22 height=%22560%22 fill=%22%23FDE8D0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%22100%22>❤️</text><text x=%2250%25%22 y=%2265%25%22 text-anchor=%22middle%22 font-size=%2232%22 fill=%22%23F09070%22 font-family=%22sans-serif%22>Toalla</text></svg>'">
                 </div>
                 <div class="sticker-info">
                     <h4>Toalla</h4>
@@ -2181,25 +2231,25 @@
 
             <div class="sticker-card">
                 <div class="sticker-image">
-                    <img src="assets/images/tienda/sticker-05-juntas-mejor.png" alt="Sticker Tampón" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22560%22 height=%22560%22><rect width=%22560%22 height=%22560%22 fill=%22%23E0F5E8%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%22100%22></text><text x=%2250%25%22 y=%2265%25%22 text-anchor=%22middle%22 font-size=%2232%22 fill=%22%234CAF50%22 font-family=%22sans-serif%22>Tampón</text></svg>'">
+                    <img src="assets/images/tienda/tampon.jpg" alt="Sticker Tampón" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22560%22 height=%22560%22><rect width=%22560%22 height=%22560%22 fill=%22%23E0F5E8%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%22100%22>🌷</text><text x=%2250%25%22 y=%2265%25%22 text-anchor=%22middle%22 font-size=%2232%22 fill=%22%234CAF50%22 font-family=%22sans-serif%22>Tampón</text></svg>'">
                 </div>
                 <div class="sticker-info">
                     <h4>Tampón</h4>
                     <p>Un aliado para tu día a día.</p>
                     <div class="sticker-bottom">
                         <div class="sticker-price">$20 <small>MXN</small></div>
-                        <button class="add-cart-btn" onclick="addToCart(5)">🛒 Agregar</button>
+                        <button class="add-cart-btn" onclick="addToCart(5)"> Agregar</button>
                     </div>
                 </div>
             </div>
 
             <div class="sticker-card">
                 <div class="sticker-image">
-                    <img src="assets/images/tienda/sticker-06-fluyo-amor.png" alt="Sticker Copa menstrual" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22560%22 height=%22560%22><rect width=%22560%22 height=%22560%22 fill=%22%23F0E8F5%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%22100%22></text><text x=%2250%25%22 y=%2265%25%22 text-anchor=%22middle%22 font-size=%2232%22 fill=%22%239B7CB6%22 font-family=%22sans-serif%22>Copa Menstrual</text></svg>'">
+                    <img src="assets/images/tienda/copa.jpg" alt="Sticker Copa menstrual" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22560%22 height=%22560%22><rect width=%22560%22 height=%22560%22 fill=%22%23F0E8F5%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%22100%22>🥤</text><text x=%2250%25%22 y=%2265%25%22 text-anchor=%22middle%22 font-size=%2232%22 fill=%22%239B7CB6%22 font-family=%22sans-serif%22>Copa Menstrual</text></svg>'">
                 </div>
                 <div class="sticker-info">
                     <h4>Copa Menstrual</h4>
-                    <p>Reutilizable, ecológica y libre.</p>
+                    <p>Reutilizable, ecológica y libre. El futuro de la menstruación.</p>
                     <div class="sticker-bottom">
                         <div class="sticker-price">$20 <small>MXN</small></div>
                         <button class="add-cart-btn" onclick="addToCart(6)">🛒 Agregar</button>
@@ -2223,7 +2273,7 @@
 
                 <ul class="contacto-list">
                     <li>
-                        <div class="c-icon"></div>
+                        <div class="c-icon">📧</div>
                         <div>
                             <div class="c-label">Correo Electrónico</div>
                             <div class="c-value">menarcadigna@gmail.com</div>
@@ -2365,7 +2415,7 @@
                     <div class="method-name">Tarjeta</div>
                 </div>
                 <div class="payment-method" data-method="transferencia" onclick="selectPaymentMethod(this)">
-                    <div class="method-icon"></div>
+                    <div class="method-icon">🏦</div>
                     <div class="method-name">Transferencia</div>
                 </div>
                 <div class="payment-method" data-method="efectivo" onclick="selectPaymentMethod(this)">
@@ -2421,12 +2471,12 @@
 
     <script>
         const stickers = {
-            1: { id: 1, name: 'Surfista', price: 20, img: 'assets/images/tienda/sticker-01-sangre-poder.png' },
-            2: { id: 2, name: 'Florecer sin Vergüenza', price: 20, img: 'assets/images/tienda/sticker-02-normal-natural.png' },
-            3: { id: 3, name: 'Soy Cíclica', price: 20, img: 'assets/images/tienda/sticker-03-valiente-libre.png' },
-            4: { id: 4, name: 'Toalla', price: 20, img: 'assets/images/tienda/sticker-04-ciclo-poder.png' },
-            5: { id: 5, name: 'Tampón', price: 20, img: 'assets/images/tienda/sticker-05-juntas-mejor.png' },
-            6: { id: 6, name: 'Copa Menstrual', price: 20, img: 'assets/images/tienda/sticker-06-fluyo-amor.png' }
+            1: { id: 1, name: 'Surfista', price: 20, img: 'assets/images/tienda/surfista.jpg' },
+            2: { id: 2, name: 'Florecer sin Vergüenza', price: 20, img: 'assets/images/tienda/florecer.jpg' },
+            3: { id: 3, name: 'Soy Cíclica', price: 20, img: 'assets/images/tienda/ciclica.jpg' },
+            4: { id: 4, name: 'Toalla', price: 20, img: 'assets/images/tienda/toalla.jpg' },
+            5: { id: 5, name: 'Tampón', price: 20, img: 'assets/images/tienda/tampon.jpg' },
+            6: { id: 6, name: 'Copa Menstrual', price: 20, img: 'assets/images/tienda/copa.jpg' }
         };
 
         let cart = [];
