@@ -19,13 +19,23 @@
     <meta property="twitter:description" content="¿Y si la menstruación fuera una historia que se cuenta y no un secreto que se guarda?">
     <meta property="twitter:image" content="assets/images/hero/toalla-entrar-hero.png">
 
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%3C/text%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌸%3C/text%3E%3C/svg%3E">
 
     <title>Menarca Digna | Cortometraje Animado</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Fredoka+One&family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function() {
+          emailjs.init({
+            publicKey: "FRC-jdIE0Ol5mAQqu",
+          });
+       })();
+    </script>
 
     <style>
         :root {
@@ -418,7 +428,7 @@
         }
 
         .sinopsis-section {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem 4rem;
             display: grid;
@@ -440,10 +450,276 @@
             margin-bottom: 1rem;
         }
 
-        .sinopsis-image img {
-            width: 100%;
+        .sinopsis-carousel {
+            position: relative;
             border-radius: 25px;
+            overflow: hidden;
             box-shadow: var(--shadow-lg);
+            aspect-ratio: 4/5;
+            background: var(--purple-soft);
+        }
+
+        .carousel-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(58,42,58,0.85));
+            color: white;
+            padding: 2rem 1.5rem 1.2rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .carousel-caption small {
+            display: block;
+            font-weight: 400;
+            font-size: 0.8rem;
+            opacity: 0.85;
+            margin-top: 0.2rem;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            cursor: pointer;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            z-index: 5;
+            color: var(--dark);
+        }
+
+        .carousel-btn:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-btn.prev { left: 12px; }
+        .carousel-btn.next { right: 12px; }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 5;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .carousel-dot.active {
+            background: white;
+            transform: scale(1.3);
+        }
+
+        .carousel-counter {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(58,42,58,0.7);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            z-index: 5;
+            backdrop-filter: blur(10px);
+        }
+
+        .proceso-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .proceso-section .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .proceso-section .section-header h2 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.2rem;
+            color: var(--dark);
+        }
+
+        .proceso-carousel-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .proceso-carousel {
+            position: relative;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            aspect-ratio: 16/9;
+            background: var(--purple-soft);
+        }
+
+        .proceso-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .proceso-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .proceso-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .proceso-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(58,42,58,0.9));
+            color: white;
+            padding: 2.5rem 2rem 1.5rem;
+        }
+
+        .proceso-caption h4 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.4rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .proceso-caption p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .proceso-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.95);
+            border: none;
+            cursor: pointer;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 5;
+            color: var(--dark);
+        }
+
+        .proceso-btn:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .proceso-btn.prev { left: 15px; }
+        .proceso-btn.next { right: 15px; }
+
+        .proceso-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 1.5rem;
+        }
+
+        .proceso-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--pink-light);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .proceso-dot.active {
+            background: var(--pink);
+            transform: scale(1.3);
+        }
+
+        .proceso-thumbnails {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 0.8rem;
+            max-width: 1100px;
+            margin: 1.5rem auto 0;
+        }
+
+        .proceso-thumb {
+            aspect-ratio: 16/9;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            opacity: 0.6;
+        }
+
+        .proceso-thumb:hover {
+            opacity: 0.9;
+            transform: translateY(-3px);
+        }
+
+        .proceso-thumb.active {
+            border-color: var(--pink);
+            opacity: 1;
+        }
+
+        .proceso-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .datos-section {
@@ -1642,6 +1918,12 @@
             box-shadow: 0 5px 20px rgba(232,115,154,0.4);
         }
 
+        .form-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         .footer {
             background: var(--dark);
             color: white;
@@ -1714,9 +1996,13 @@
             transition: all 0.4s ease;
             opacity: 0;
             box-shadow: var(--shadow-lg);
+            pointer-events: none;
         }
 
-        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
 
         @media (max-width: 1024px) {
             .ficha-tecnica { grid-template-columns: repeat(2, 1fr); }
@@ -1729,6 +2015,7 @@
             .footer-content { grid-template-columns: 1fr; }
             .activacion-galeria { grid-template-columns: 1fr; }
             .activacion-galeria.reverse { grid-template-columns: 1fr; }
+            .proceso-thumbnails { grid-template-columns: repeat(3, 1fr); }
         }
 
         @media (max-width: 768px) {
@@ -1775,6 +2062,9 @@
             .colab-card { padding: 1.5rem; }
             .dato-card { padding: 1.5rem; }
             .datos-grid { grid-template-columns: 1fr; }
+            .proceso-thumbnails { grid-template-columns: repeat(3, 1fr); }
+            .proceso-btn { width: 40px; height: 40px; font-size: 1.1rem; }
+            .carousel-btn { width: 36px; height: 36px; font-size: 1rem; }
         }
     </style>
 </head>
@@ -1787,16 +2077,16 @@
                 Menarca Digna
             </a>
             <ul class="nav-tabs" id="navTabs">
-                <li><button class="active" data-tab="proyecto">🎬 Proyecto</button></li>
-                <li><button data-tab="mision"> Misión y Visión</button></li>
-                <li><button data-tab="activaciones"> Activaciones</button></li>
+                <li><button class="active" data-tab="proyecto"> Proyecto</button></li>
+                <li><button data-tab="mision">🎯 Misión y Visión</button></li>
+                <li><button data-tab="activaciones">📸 Activaciones</button></li>
                 <li><button data-tab="talleres">🎨 Talleres</button></li>
-                <li><button data-tab="tienda">️ Tienda</button></li>
+                <li><button data-tab="tienda">🛍️ Tienda</button></li>
                 <li><button data-tab="contacto">📬 Contacto</button></li>
             </ul>
             <div style="display:flex;align-items:center;gap:0.5rem;">
                 <button class="nav-cart-btn" id="cartBtn" onclick="openCart()" title="Ver carrito">
-                    
+                    🛒
                     <span class="cart-count hidden" id="cartCount">0</span>
                 </button>
                 <div class="nav-toggle" id="navToggle">
@@ -1812,7 +2102,6 @@
         <section class="hero-inicio" id="heroInicio">
             <div class="hero-particles" id="particles"></div>
             <div class="hero-inicio-content">
-                <h1>Menarca <span>Digna</span></h1>
                 <p class="subtitle">¿Y si la menstruación fuera una historia que se cuenta y no un secreto que se guarda?</p>
                 <div class="hero-toalla-container" onclick="scrollToProyecto()">
                     <div class="enter-glow"></div>
@@ -1846,13 +2135,136 @@
             </div>
         </div>
 
+        <!-- SINOPSIS CON CARRUSEL -->
         <div class="sinopsis-section">
             <div class="sinopsis-text">
                 <h2>Sinopsis</h2>
                 <p>Miriam vive su menarca a los 9 años, esta transición la sumerge en un mundo imaginario lleno de prejuicios, dudas y temores que logra enfrentar con valentía, la ayuda de su madre y su mejor amiga.</p>
             </div>
-            <div class="sinopsis-image">
-                <img src="assets/images/proyecto/miriam-sinopsis.png" alt="Miriam - Menarca Digna" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%221000%22><rect width=%22800%22 height=%221000%22 fill=%22%23EDE4F3%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%2280%22></text><text x=%2250%25%22 y=%2260%25%22 text-anchor=%22middle%22 font-size=%2232%22 fill=%22%239B7CB6%22 font-family=%22sans-serif%22>Miriam</text></svg>'">
+
+            <div class="sinopsis-carousel" id="sinopsisCarousel">
+                <div class="carousel-counter">
+                    <span id="carouselCurrent">1</span> / <span id="carouselTotal">7</span>
+                </div>
+
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide">
+                        <img src="assets/images/proyecto/miriam-sinopsis.jpg" alt="Miriam - Menarca Digna" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%221000%22><rect width=%22800%22 height=%221000%22 fill=%22%23EDE4F3%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%2280%22>👧</text><text x=%2250%25%22 y=%2260%25%22 text-anchor=%22middle%22 font-size=%2232%22 fill=%22%239B7CB6%22 font-family=%22sans-serif%22>Miriam</text></svg>'">
+                        <div class="carousel-caption">Miriam <small>Personaje principal</small></div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/proceso/behind-the-scenes-1.jpg" alt="Behind the scenes 1" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%221000%22><rect width=%22800%22 height=%221000%22 fill=%22%23FDE8F0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%2280%22>🎬</text><text x=%2250%25%22 y=%2260%25%22 text-anchor=%22middle%22 font-size=%2232%22 fill=%22%23E8739A%22 font-family=%22sans-serif%22>Behind the Scenes 1</text></svg>'">
+                        <div class="carousel-caption">Behind the Scenes 1 <small>Proceso creativo</small></div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/proceso/behind-the-scenes-2.jpg" alt="Behind the scenes 2" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%221000%22><rect width=%22800%22 height=%221000%22 fill=%22%23EDE4F3%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%2280%22>🎨</text><text x=%2250%25%22 y=%2260%25%22 text-anchor=%22middle%22 font-size=%2232%22 fill=%22%239B7CB6%22 font-family=%22sans-serif%22>Behind the Scenes 2</text></svg>'">
+                        <div class="carousel-caption">Behind the Scenes 2 <small>Proceso creativo</small></div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/proceso/behind-the-scenes-3.jpg" alt="Behind the scenes 3" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%221000%22><rect width=%22800%22 height=%221000%22 fill=%22%23E0F0FA%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%2280%22>🎭</text><text x=%2250%25%22 y=%2260%25%22 text-anchor=%22middle%22 font-size=%2232%22 fill=%22%236BA3D6%22 font-family=%22sans-serif%22>Behind the Scenes 3</text></svg>'">
+                        <div class="carousel-caption">Behind the Scenes 3 <small>Proceso creativo</small></div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/proceso/puppet-1.jpg" alt="Puppet 1" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%221000%22><rect width=%22800%22 height=%221000%22 fill=%22%23FDE8D0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%2280%22>🧸</text><text x=%2250%25%22 y=%2260%25%22 text-anchor=%22middle%22 font-size=%2232%22 fill=%22%23F09070%22 font-family=%22sans-serif%22>Puppet 1</text></svg>'">
+                        <div class="carousel-caption">Puppet 1 <small>Construcción de títere</small></div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/proceso/puppet-2.jpg" alt="Puppet 2" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%221000%22><rect width=%22800%22 height=%221000%22 fill=%22%23E0F5E8%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%2280%22>🪆</text><text x=%2250%25%22 y=%2260%25%22 text-anchor=%22middle%22 font-size=%2232%22 fill=%22%234CAF50%22 font-family=%22sans-serif%22>Puppet 2</text></svg>'">
+                        <div class="carousel-caption">Puppet 2 <small>Construcción de títere</small></div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/proceso/storyboard.jpg" alt="Storyboard" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%221000%22><rect width=%22800%22 height=%221000%22 fill=%22%23F0E8F5%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%2280%22>📋</text><text x=%2250%25%22 y=%2260%25%22 text-anchor=%22middle%22 font-size=%2232%22 fill=%22%239B7CB6%22 font-family=%22sans-serif%22>Storyboard</text></svg>'">
+                        <div class="carousel-caption">Storyboard <small>Planificación visual</small></div>
+                    </div>
+                </div>
+
+                <button class="carousel-btn prev" onclick="moveCarousel(-1)">‹</button>
+                <button class="carousel-btn next" onclick="moveCarousel(1)">›</button>
+
+                <div class="carousel-dots" id="carouselDots"></div>
+            </div>
+        </div>
+
+        <!-- GALERÍA PROCESO CREATIVO -->
+        <div class="proceso-section">
+            <div class="section-header">
+                <span class="section-label" style="display:inline-block;background:var(--pink-soft);color:var(--pink);padding:0.4rem 1.2rem;border-radius:20px;font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:1rem;">Detrás de cámaras</span>
+                <h2>Proceso Creativo</h2>
+            </div>
+
+            <div class="proceso-carousel-wrapper">
+                <div class="proceso-carousel" id="procesoCarousel">
+                    <div class="proceso-track" id="procesoTrack">
+                        <div class="proceso-slide">
+                            <img src="assets/images/proceso/behind-the-scenes-1.jpg" alt="Behind the scenes 1" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22675%22><rect width=%221200%22 height=%22675%22 fill=%22%23FDE8F0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%22100%22>🎬</text><text x=%2250%25%22 y=%2262%25%22 text-anchor=%22middle%22 font-size=%2240%22 fill=%22%23E8739A%22 font-family=%22sans-serif%22>Behind the Scenes 1</text></svg>'">
+                            <div class="proceso-caption">
+                                <h4>Behind the Scenes 1</h4>
+                                <p>Primeras etapas del proceso creativo</p>
+                            </div>
+                        </div>
+                        <div class="proceso-slide">
+                            <img src="assets/images/proceso/behind-the-scenes-2.jpg" alt="Behind the scenes 2" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22675%22><rect width=%221200%22 height=%22675%22 fill=%22%23EDE4F3%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%22100%22>🎨</text><text x=%2250%25%22 y=%2262%25%22 text-anchor=%22middle%22 font-size=%2240%22 fill=%22%239B7CB6%22 font-family=%22sans-serif%22>Behind the Scenes 2</text></svg>'">
+                            <div class="proceso-caption">
+                                <h4>Behind the Scenes 2</h4>
+                                <p>Desarrollo y producción</p>
+                            </div>
+                        </div>
+                        <div class="proceso-slide">
+                            <img src="assets/images/proceso/behind-the-scenes-3.jpg" alt="Behind the scenes 3" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22675%22><rect width=%221200%22 height=%22675%22 fill=%22%23E0F0FA%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%22100%22>🎭</text><text x=%2250%25%22 y=%2262%25%22 text-anchor=%22middle%22 font-size=%2240%22 fill=%22%236BA3D6%22 font-family=%22sans-serif%22>Behind the Scenes 3</text></svg>'">
+                            <div class="proceso-caption">
+                                <h4>Behind the Scenes 3</h4>
+                                <p>Detalles del set y animación</p>
+                            </div>
+                        </div>
+                        <div class="proceso-slide">
+                            <img src="assets/images/proceso/puppet-1.jpg" alt="Puppet 1" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22675%22><rect width=%221200%22 height=%22675%22 fill=%22%23FDE8D0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%22100%22>🧸</text><text x=%2250%25%22 y=%2262%25%22 text-anchor=%22middle%22 font-size=%2240%22 fill=%22%23F09070%22 font-family=%22sans-serif%22>Puppet 1</text></svg>'">
+                            <div class="proceso-caption">
+                                <h4>Puppet 1</h4>
+                                <p>Construcción del títere de Miriam</p>
+                            </div>
+                        </div>
+                        <div class="proceso-slide">
+                            <img src="assets/images/proceso/puppet-2.jpg" alt="Puppet 2" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22675%22><rect width=%221200%22 height=%22675%22 fill=%22%23E0F5E8%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%22100%22>🪆</text><text x=%2250%25%22 y=%2262%25%22 text-anchor=%22middle%22 font-size=%2240%22 fill=%22%234CAF50%22 font-family=%22sans-serif%22>Puppet 2</text></svg>'">
+                            <div class="proceso-caption">
+                                <h4>Puppet 2</h4>
+                                <p>Mecanismo de reemplazo y plastilina</p>
+                            </div>
+                        </div>
+                        <div class="proceso-slide">
+                            <img src="assets/images/proceso/storyboard.jpg" alt="Storyboard" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22675%22><rect width=%221200%22 height=%22675%22 fill=%22%23F0E8F5%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%22100%22>📋</text><text x=%2250%25%22 y=%2262%25%22 text-anchor=%22middle%22 font-size=%2240%22 fill=%22%239B7CB6%22 font-family=%22sans-serif%22>Storyboard</text></svg>'">
+                            <div class="proceso-caption">
+                                <h4>Storyboard</h4>
+                                <p>Planificación visual de cada escena</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="proceso-btn prev" onclick="moveProceso(-1)">‹</button>
+                    <button class="proceso-btn next" onclick="moveProceso(1)">›</button>
+                </div>
+
+                <div class="proceso-dots" id="procesoDots"></div>
+
+                <div class="proceso-thumbnails" id="procesoThumbnails">
+                    <div class="proceso-thumb active" onclick="goToProceso(0)">
+                        <img src="assets/images/proceso/behind-the-scenes-1.jpg" alt="BTS 1" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22112%22><rect width=%22200%22 height=%22112%22 fill=%22%23FDE8F0%22/><text x=%2250%25%22 y=%2255%25%22 text-anchor=%22middle%22 font-size=%2220%22></text></svg>'">
+                    </div>
+                    <div class="proceso-thumb" onclick="goToProceso(1)">
+                        <img src="assets/images/proceso/behind-the-scenes-2.jpg" alt="BTS 2" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22112%22><rect width=%22200%22 height=%22112%22 fill=%22%23EDE4F3%22/><text x=%2250%25%22 y=%2255%25%22 text-anchor=%22middle%22 font-size=%2220%22>🎨</text></svg>'">
+                    </div>
+                    <div class="proceso-thumb" onclick="goToProceso(2)">
+                        <img src="assets/images/proceso/behind-the-scenes-3.jpg" alt="BTS 3" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22112%22><rect width=%22200%22 height=%22112%22 fill=%22%23E0F0FA%22/><text x=%2250%25%22 y=%2255%25%22 text-anchor=%22middle%22 font-size=%2220%22>🎭</text></svg>'">
+                    </div>
+                    <div class="proceso-thumb" onclick="goToProceso(3)">
+                        <img src="assets/images/proceso/puppet-1.jpg" alt="Puppet 1" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22112%22><rect width=%22200%22 height=%22112%22 fill=%22%23FDE8D0%22/><text x=%2250%25%22 y=%2255%25%22 text-anchor=%22middle%22 font-size=%2220%22>🧸</text></svg>'">
+                    </div>
+                    <div class="proceso-thumb" onclick="goToProceso(4)">
+                        <img src="assets/images/proceso/puppet-2.jpg" alt="Puppet 2" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22112%22><rect width=%22200%22 height=%22112%22 fill=%22%23E0F5E8%22/><text x=%2250%25%22 y=%2255%25%22 text-anchor=%22middle%22 font-size=%2220%22>🪆</text></svg>'">
+                    </div>
+                    <div class="proceso-thumb" onclick="goToProceso(5)">
+                        <img src="assets/images/proceso/storyboard.jpg" alt="Storyboard" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22112%22><rect width=%22200%22 height=%22112%22 fill=%22%23F0E8F5%22/><text x=%2250%25%22 y=%2255%25%22 text-anchor=%22middle%22 font-size=%2220%22></text></svg>'">
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -1882,7 +2294,7 @@
             </div>
 
             <div class="equipo-photo">
-                <img src="assets/images/proyecto/equipo-grupal.jpg" alt="Equipo Menarca Digna" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22700%22><rect width=%221200%22 height=%22700%22 fill=%22%23FDE8F0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%22100%22>👩‍‍👧</text><text x=%2250%25%22 y=%2262%25%22 text-anchor=%22middle%22 font-size=%2240%22 fill=%22%23E8739A%22 font-family=%22sans-serif%22>Equipo Menarca Digna</text></svg>'">
+                <img src="assets/images/proyecto/equipo-grupal.jpg" alt="Equipo Menarca Digna" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22700%22><rect width=%221200%22 height=%22700%22 fill=%22%23FDE8F0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%22100%22>👩‍👩‍👧</text><text x=%2250%25%22 y=%2262%25%22 text-anchor=%22middle%22 font-size=%2240%22 fill=%22%23E8739A%22 font-family=%22sans-serif%22>Equipo Menarca Digna</text></svg>'">
             </div>
 
             <div class="equipo-grid">
@@ -1899,7 +2311,7 @@
                 <div class="equipo-member">
                     <div class="avatar">
                         <img src="assets/images/equipo/alicia-hernandez.jpg" alt="Alicia Hernández" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <span class="avatar-placeholder" style="display:none;"></span>
+                        <span class="avatar-placeholder" style="display:none;">📋</span>
                     </div>
                     <div class="info">
                         <h4>Alicia Hernández</h4>
@@ -1929,7 +2341,7 @@
                 <div class="equipo-member">
                     <div class="avatar">
                         <img src="assets/images/equipo/mayreni-senior.jpg" alt="Mayrení Senior" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <span class="avatar-placeholder" style="display:none;">🎭</span>
+                        <span class="avatar-placeholder" style="display:none;"></span>
                     </div>
                     <div class="info">
                         <h4>Mayrení Senior</h4>
@@ -1939,7 +2351,7 @@
                 <div class="equipo-member">
                     <div class="avatar">
                         <img src="assets/images/equipo/angeles-soria.jpg" alt="Ángeles Soria" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <span class="avatar-placeholder" style="display:none;"></span>
+                        <span class="avatar-placeholder" style="display:none;">🎵</span>
                     </div>
                     <div class="info">
                         <h4>Ángeles Soria</h4>
@@ -1979,7 +2391,7 @@
                 <div class="equipo-member">
                     <div class="avatar">
                         <img src="assets/images/equipo/dolores-estrada.jpg" alt="Dolores Estrada" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <span class="avatar-placeholder" style="display:none;">🎭</span>
+                        <span class="avatar-placeholder" style="display:none;"></span>
                     </div>
                     <div class="info">
                         <h4>Dolores Estrada</h4>
@@ -2059,9 +2471,9 @@
 
         <div class="mv-cards">
             <div class="mv-card mision">
-                <div class="icon"></div>
+                <div class="icon">🎯</div>
                 <h3>Misión</h3>
-                <p>Crear contenido audiovisual animado que eduque, acompañe y dignifique la experiencia de la menstruación en niñas y adolescentes, rompiendo tabúes y generando conversaciones sanas entre familias, escuelas y comunidades. Utilizamos el stop motion y el cut out como herramientas artísticas para transformar realidades.</p>
+                <p>Crear contenido audiovisual animado que acompañe y dignifique la experiencia de la menstruación en niñas y adolescentes, rompiendo tabúes y generando conversaciones sanas entre familias, escuelas y comunidades. Utilizamos el stop motion y el cut out como herramientas artísticas para transformar realidades.</p>
             </div>
             <div class="mv-card vision">
                 <div class="icon">🌟</div>
@@ -2078,7 +2490,7 @@
 
             <div class="colab-grid">
                 <div class="colab-card">
-                    <div class="logo-circle">🎓</div>
+                    <div class="logo-circle"></div>
                     <h4>Taller de Especialización Stop Motion</h4>
                     <p>Inicia proceso de investigación, documentación, guión y desarrollo de arte (2024).</p>
                     <span class="colab-tag tag-edu">Educación</span>
@@ -2115,7 +2527,7 @@
             </div>
             <div class="activacion-galeria">
                 <div class="gal-main">
-                    <img src="assets/images/activaciones/activacion-01-gdl-01.jpg" alt="Activación Guadalajara 8M - Imagen principal" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22><rect width=%22800%22 height=%22500%22 fill=%22%23FDE8F0%22/><text x=%2250%25%22 y=%2245%25%22 text-anchor=%22middle%22 font-size=%2280%22></text><text x=%2250%25%22 y=%2260%25%22 text-anchor=%22middle%22 font-size=%2232%22 fill=%22%23E8739A%22 font-family=%22sans-serif%22>Guadalajara · 8M</text></svg>'">
+                    <img src="assets/images/activaciones/activacion-01-gdl-01.jpg" alt="Activación Guadalajara 8M - Imagen principal" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22><rect width=%22800%22 height=%22500%22 fill=%22%23FDE8F0%22/><text x=%2250%25%22 y=%2245%25%22 text-anchor=%22middle%22 font-size=%2280%22>📍</text><text x=%2250%25%22 y=%2260%25%22 text-anchor=%22middle%22 font-size=%2232%22 fill=%22%23E8739A%22 font-family=%22sans-serif%22>Guadalajara · 8M</text></svg>'">
                 </div>
                 <div class="gal-side">
                     <div class="gal-side-item">
@@ -2137,7 +2549,7 @@
             <div class="activacion-galeria reverse">
                 <div class="gal-side">
                     <div class="gal-side-item">
-                        <img src="assets/images/activaciones/activacion-02-cdmx-01.jpg" alt="Activación CDMX 8M - Detalle" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22250%22><rect width=%22400%22 height=%22250%22 fill=%22%23FDE8D0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%2250%22></text><text x=%2250%25%22 y=%2270%25%22 text-anchor=%22middle%22 font-size=%2218%22 fill=%22%23F09070%22 font-family=%22sans-serif%22>CDMX · 8M</text></svg>'">
+                        <img src="assets/images/activaciones/activacion-02-cdmx-01.jpg" alt="Activación CDMX 8M - Detalle" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22250%22><rect width=%22400%22 height=%22250%22 fill=%22%23FDE8D0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%2250%22>🌺</text><text x=%2250%25%22 y=%2270%25%22 text-anchor=%22middle%22 font-size=%2218%22 fill=%22%23F09070%22 font-family=%22sans-serif%22>CDMX · 8M</text></svg>'">
                     </div>
                     <div class="gal-side-item">
                         <img src="assets/images/activaciones/activacion-02-cdmx-02.jpg" alt="Activación CDMX 8M - Participantes" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22250%22><rect width=%22400%22 height=%22250%22 fill=%22%23E0F5E8%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%2250%22>✊</text><text x=%2250%25%22 y=%2270%25%22 text-anchor=%22middle%22 font-size=%2218%22 fill=%22%234CAF50%22 font-family=%22sans-serif%22>Marcha 8M</text></svg>'">
@@ -2158,7 +2570,7 @@
         </div>
 
         <div class="talleres-pronto">
-            <div class="pronto-icon">🎨</div>
+            <div class="pronto-icon"></div>
             <h2>PRÓXIMAMENTE</h2>
             <p>Estamos preparando talleres increíbles para ti. ¡Muy pronto tendrás más información!</p>
         </div>
@@ -2169,7 +2581,7 @@
         <div class="tienda-hero">
             <span class="section-label" style="display:inline-block;background:var(--pink-soft);color:var(--pink);padding:0.4rem 1.2rem;border-radius:20px;font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:1rem;">Tienda Oficial</span>
             <h1>Stickers <span>Menarca Digna</span></h1>
-            <p>Colección de 6 stickers diseñados con amor para normalizar la menstruación. ¡Llévalos contigo y comparte el mensaje!</p>
+            <p>Colección de 6 stickers ¡Llévalos contigo y apoya el proyecto!</p>
         </div>
 
         <div class="stickers-grid">
@@ -2189,7 +2601,7 @@
 
             <div class="sticker-card">
                 <div class="sticker-image">
-                    <img src="assets/images/tienda/surfista.jpg" alt="Sticker Surfista" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22560%22 height=%22560%22><rect width=%22560%22 height=%22560%22 fill=%22%23FDE8F0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%22100%22>🏄‍♀️</text><text x=%2250%25%22 y=%2265%25%22 text-anchor=%22middle%22 font-size=%2232%22 fill=%22%23E8739A%22 font-family=%22sans-serif%22>Surfista</text></svg>'">
+                    <img src="assets/images/tienda/surfista.jpg" alt="Sticker Surfista" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22560%22 height=%22560%22><rect width=%22560%22 height=%22560%22 fill=%22%23FDE8F0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%22100%22>‍♀️</text><text x=%2250%25%22 y=%2265%25%22 text-anchor=%22middle%22 font-size=%2232%22 fill=%22%23E8739A%22 font-family=%22sans-serif%22>Surfista</text></svg>'">
                 </div>
                 <div class="sticker-info">
                     <h4>Surfista</h4>
@@ -2252,7 +2664,7 @@
                     <p>Reutilizable, ecológica y libre. El futuro de la menstruación.</p>
                     <div class="sticker-bottom">
                         <div class="sticker-price">$20 <small>MXN</small></div>
-                        <button class="add-cart-btn" onclick="addToCart(6)">🛒 Agregar</button>
+                        <button class="add-cart-btn" onclick="addToCart(6)"> Agregar</button>
                     </div>
                 </div>
             </div>
@@ -2318,18 +2730,18 @@
 
             <div class="contacto-form">
                 <h3>Envíanos un Mensaje</h3>
-                <form id="contactForm" onsubmit="handleSubmit(event)">
+                <form id="contactForm">
                     <div class="form-group">
                         <label for="name">Nombre completo</label>
-                        <input type="text" id="name" placeholder="Tu nombre" required>
+                        <input type="text" id="name" name="name" placeholder="Tu nombre" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Correo electrónico</label>
-                        <input type="email" id="email" placeholder="tu@email.com" required>
+                        <input type="email" id="email" name="email" placeholder="tu@email.com" required>
                     </div>
                     <div class="form-group">
                         <label for="subject">Motivo de contacto</label>
-                        <select id="subject" required>
+                        <select id="subject" name="subject" required>
                             <option value="">Selecciona una opción</option>
                             <option value="taller">Agendar un taller</option>
                             <option value="colaboracion">Propuesta de colaboración</option>
@@ -2341,7 +2753,7 @@
                     </div>
                     <div class="form-group">
                         <label for="message">Mensaje</label>
-                        <textarea id="message" placeholder="Cuéntanos en qué podemos ayudarte..." required></textarea>
+                        <textarea id="message" name="message" placeholder="Cuéntanos en qué podemos ayudarte..." required></textarea>
                     </div>
                     <button type="submit" class="form-submit">Enviar mensaje 🌸</button>
                 </form>
@@ -2352,7 +2764,7 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-brand">
-                <h3> Menarca Digna</h3>
+                <h3>🌸 Menarca Digna</h3>
                 <p>Un cortometraje animado que busca transformar la manera en que las nuevas generaciones perciben y viven la menstruación, con dignidad, información y curiosidad.</p>
             </div>
             <div class="footer-col">
@@ -2462,7 +2874,7 @@
         <div class="success-content">
             <div class="success-icon">✓</div>
             <h3>¡Pago Exitoso!</h3>
-            <p>Tu pedido ha sido confirmado. Recibirás un correo con los detalles de envío. ¡Gracias por apoyar Menarca Digna! </p>
+            <p>Tu pedido ha sido confirmado. Recibirás un correo con los detalles de envío. ¡Gracias por apoyar Menarca Digna! 🌸</p>
             <button class="success-close-btn" onclick="closeSuccess()">Continuar</button>
         </div>
     </div>
@@ -2481,6 +2893,167 @@
 
         let cart = [];
         let selectedPaymentMethod = 'tarjeta';
+
+        // ===== CARRUSEL SINOPSIS =====
+        let carouselIndex = 0;
+        const totalSlides = 7;
+        let carouselAutoplay;
+
+        function initCarousel() {
+            const track = document.getElementById('carouselTrack');
+            const dotsContainer = document.getElementById('carouselDots');
+            const totalEl = document.getElementById('carouselTotal');
+
+            totalEl.textContent = totalSlides;
+
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('button');
+                dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+                dot.onclick = () => goToCarousel(i);
+                dotsContainer.appendChild(dot);
+            }
+
+            startCarouselAutoplay();
+        }
+
+        function updateCarousel() {
+            const track = document.getElementById('carouselTrack');
+            track.style.transform = `translateX(-${carouselIndex * 100}%)`;
+
+            document.getElementById('carouselCurrent').textContent = carouselIndex + 1;
+
+            document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === carouselIndex);
+            });
+        }
+
+        function moveCarousel(dir) {
+            carouselIndex = (carouselIndex + dir + totalSlides) % totalSlides;
+            updateCarousel();
+            resetCarouselAutoplay();
+        }
+
+        function goToCarousel(index) {
+            carouselIndex = index;
+            updateCarousel();
+            resetCarouselAutoplay();
+        }
+
+        function startCarouselAutoplay() {
+            carouselAutoplay = setInterval(() => {
+                carouselIndex = (carouselIndex + 1) % totalSlides;
+                updateCarousel();
+            }, 4000);
+        }
+
+        function resetCarouselAutoplay() {
+            clearInterval(carouselAutoplay);
+            startCarouselAutoplay();
+        }
+
+        // ===== CARRUSEL PROCESO =====
+        let procesoIndex = 0;
+        const totalProceso = 6;
+        let procesoAutoplay;
+
+        function initProceso() {
+            const dotsContainer = document.getElementById('procesoDots');
+
+            for (let i = 0; i < totalProceso; i++) {
+                const dot = document.createElement('button');
+                dot.className = 'proceso-dot' + (i === 0 ? ' active' : '');
+                dot.onclick = () => goToProceso(i);
+                dotsContainer.appendChild(dot);
+            }
+
+            startProcesoAutoplay();
+        }
+
+        function updateProceso() {
+            const track = document.getElementById('procesoTrack');
+            track.style.transform = `translateX(-${procesoIndex * 100}%)`;
+
+            document.querySelectorAll('.proceso-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === procesoIndex);
+            });
+
+            document.querySelectorAll('.proceso-thumb').forEach((thumb, i) => {
+                thumb.classList.toggle('active', i === procesoIndex);
+            });
+        }
+
+        function moveProceso(dir) {
+            procesoIndex = (procesoIndex + dir + totalProceso) % totalProceso;
+            updateProceso();
+            resetProcesoAutoplay();
+        }
+
+        function goToProceso(index) {
+            procesoIndex = index;
+            updateProceso();
+            resetProcesoAutoplay();
+        }
+
+        function startProcesoAutoplay() {
+            procesoAutoplay = setInterval(() => {
+                procesoIndex = (procesoIndex + 1) % totalProceso;
+                updateProceso();
+            }, 5000);
+        }
+
+        function resetProcesoAutoplay() {
+            clearInterval(procesoAutoplay);
+            startProcesoAutoplay();
+        }
+
+        // Pausar autoplay al hacer hover
+        document.addEventListener('DOMContentLoaded', () => {
+            const sinopsisCarousel = document.getElementById('sinopsisCarousel');
+            const procesoCarousel = document.getElementById('procesoCarousel');
+
+            sinopsisCarousel.addEventListener('mouseenter', () => clearInterval(carouselAutoplay));
+            sinopsisCarousel.addEventListener('mouseleave', startCarouselAutoplay);
+
+            procesoCarousel.addEventListener('mouseenter', () => clearInterval(procesoAutoplay));
+            procesoCarousel.addEventListener('mouseleave', startProcesoAutoplay);
+
+            // Touch/swipe support
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            sinopsisCarousel.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+                clearInterval(carouselAutoplay);
+            });
+
+            sinopsisCarousel.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 50) {
+                    moveCarousel(diff > 0 ? 1 : -1);
+                } else {
+                    startCarouselAutoplay();
+                }
+            });
+
+            procesoCarousel.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+                clearInterval(procesoAutoplay);
+            });
+
+            procesoCarousel.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 50) {
+                    moveProceso(diff > 0 ? 1 : -1);
+                } else {
+                    startProcesoAutoplay();
+                }
+            });
+
+            initCarousel();
+            initProceso();
+        });
 
         function switchTab(tabName) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
@@ -2553,7 +3126,7 @@
                     btn.innerHTML = '✓ Agregado';
                     setTimeout(() => {
                         btn.classList.remove('added');
-                        btn.innerHTML = ' Agregar';
+                        btn.innerHTML = '🛒 Agregar';
                     }, 1500);
                 }
             });
@@ -2593,7 +3166,7 @@
             const itemsHTML = cart.map(item => `
                 <div class="cart-item">
                     <div class="cart-item-img">
-                        <img src="${item.img}" alt="${item.name}" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2270%22 height=%2270%22><rect width=%2270%22 height=%2270%22 fill=%22%23FDE8F0%22/><text x=%2250%25%22 y=%2255%25%22 text-anchor=%22middle%22 font-size=%2230%22></text></svg>'">
+                        <img src="${item.img}" alt="${item.name}" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2270%22 height=%2270%22><rect width=%2270%22 height=%2270%22 fill=%22%23FDE8F0%22/><text x=%2250%25%22 y=%2255%25%22 text-anchor=%22middle%22 font-size=%2230%22>🌸</text></svg>'">
                     </div>
                     <div class="cart-item-info">
                         <h5>${item.name}</h5>
@@ -2604,7 +3177,7 @@
                         <span class="qty-value">${item.qty}</span>
                         <button class="qty-btn" onclick="updateQty(${item.id}, 1)">+</button>
                     </div>
-                    <button class="cart-item-remove" onclick="removeFromCart(${item.id})">🗑️</button>
+                    <button class="cart-item-remove" onclick="removeFromCart(${item.id})">️</button>
                 </div>
             `).join('');
 
@@ -2673,19 +3246,44 @@
             document.getElementById('successModal').classList.remove('open');
         }
 
-        function handleSubmit(e) {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            showToast(`¡Gracias ${name}! Tu mensaje ha sido enviado 🌸`);
-            e.target.reset();
-        }
-
         function showToast(message) {
             const toast = document.getElementById('toast');
             toast.textContent = message;
             toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3000);
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 5000);
         }
+
+        // EmailJS - Enviar formulario de contacto
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            // Cambiar botón a "Enviando..."
+            submitBtn.innerHTML = 'Enviando... ⏳';
+            submitBtn.disabled = true;
+            
+            // Enviar email
+            emailjs.sendForm(
+                'service_t6yb09w',
+                'template_nrgrn42',
+                this
+            )
+            .then(() => {
+                showToast('✅ ¡Mensaje enviado! Te contactaremos pronto 🌸');
+                e.target.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, (error) => {
+                showToast('❌ Error al enviar. Intenta de nuevo o escríbenos a menarcadigna@gmail.com');
+                console.error('EmailJS Error:', error);
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+        });
 
         document.getElementById('payCard').addEventListener('input', function(e) {
             let value = e.target.value.replace(/\s/g, '').replace(/\D/g, '');
